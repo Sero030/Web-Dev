@@ -1,8 +1,14 @@
 // Detecting Button Press
 for (var i = 0; i < document.querySelectorAll(".drum").length; i++) {
-    document.querySelectorAll(".drum")[i].addEventListener("click", function(){playSound(this.innerHTML);});
+    document.querySelectorAll(".drum")[i].addEventListener("click", function(){
+        playSound(this.innerHTML);
+        buttonAnimation(this.innerHTML);
+    });
 }
-document.addEventListener("keydown", function (event) {playSound(event.key)});
+document.addEventListener("keydown", function(event){
+        playSound(event.key);
+        buttonAnimation(event.key);
+    });
 
 // Detecting Key Press
 function playSound(key){
@@ -23,4 +29,12 @@ function playSound(key){
             break;
         default: console.log(key);
     }
+}
+
+function buttonAnimation(key){
+    var keyPressed = document.querySelector("."+key);
+    keyPressed.classList.add("pressed");
+    setTimeout(function(){
+        keyPressed.classList.remove("pressed");
+    },100);
 }
